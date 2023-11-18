@@ -1,3 +1,6 @@
+mod chicken;
+use crate::chicken::Chicken;
+
 fn main() {
     // It is necessary to call this function once. Otherwise some patches to the runtime
     // implemented by esp-idf-sys might not link properly. See https://github.com/esp-rs/esp-idf-template/issues/71
@@ -7,4 +10,14 @@ fn main() {
     esp_idf_svc::log::EspLogger::initialize_default();
 
     log::info!("Hello, world!");
+
+    // create a chicken object (updates at midnight)
+    // future - add app overrides
+    // create a gate controller (init based on schedule, eg isAwake(offset))
+    // drive gate actuator
+
+    let chicken = Chicken::new();
+    if chicken.is_awake() {
+        log::info!("the chickens are awake!");
+    }
 }
