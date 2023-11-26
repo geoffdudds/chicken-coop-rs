@@ -8,7 +8,9 @@
       "program": "${workspaceFolder}/target/xtensa-esp32-espidf/debug/chicken_coop_rs",
       "cwd": "${workspaceFolder}",
       "MIMode": "gdb",
-      "miDebuggerPath": "${userHome}/.espressif/tools/xtensa-esp32-elf/esp-2021r2-patch3-8.4.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gdb",
+      // "miDebuggerPath": "${userHome}/.espressif/tools/xtensa-esp32-elf/esp-2021r2-patch3-8.4.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-gdb",
+      // "miDebuggerPath": "/home/esp/.rustup/toolchains/esp/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/share/licenses/binutils/gdb",
+      "miDebuggerPath": "/home/esp/.rustup/toolchains/esp/bin/rust-gdb",
       "miDebuggerServerAddress": "localhost:3333"
     }
   ]

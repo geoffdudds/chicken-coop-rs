@@ -14,10 +14,13 @@ fn main() {
     // create a chicken object (updates at midnight)
     // future - add app overrides
     // create a gate controller (init based on schedule, eg isAwake(offset))
-    // drive gate actuator
+    // create gate driver
 
     let chicken = Chicken::new();
     if chicken.is_awake() {
         log::info!("the chickens are awake!");
     }
+    log::info!("wake time: {}", Chicken::get_wake_time().unwrap());
+    log::info!("bed time: {}", Chicken::get_bed_time().unwrap());
+    log::info!("now: {}", Chicken::get_time());
 }
