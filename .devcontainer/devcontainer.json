@@ -1,15 +1,5 @@
 {
-  "name": "chicken_coop_rs",
-  // Select between image and build propieties to pull or build the image.
-  // "image": "docker.io/espressif/idf-rust:esp32_latest",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "CONTAINER_USER": "esp",
-      "CONTAINER_GROUP": "esp",
-      "ESP_BOARD": "esp32"
-    }
-  },
+  "image": "espressif/idf-rust:esp32_latest",
   "customizations": {
     "vscode": {
       "settings": {
@@ -28,22 +18,22 @@
         }
       },
       "extensions": [
+        "ms-azuretools.vscode-docker",
         "rust-lang.rust-analyzer",
-        "tamasfe.even-better-toml",
+        "mhutchie.git-graph",
+        "albert.TabOut",
         "serayuzgur.crates",
-        "mutantdino.resourcemonitor",
         "yzhang.markdown-all-in-one",
         "ms-vscode.cpptools",
         "actboy168.tasks",
-        "Wokwi.wokwi-vscode",
-        "albert.TabOut"
-      ],
-    }
-  },
-  "forwardPorts": [
-    3333,
-    8000
-  ],
-  "workspaceMount": "source=${localWorkspaceFolder},target=/home/esp/chicken_coop_rs,type=bind,consistency=cached",
-  "workspaceFolder": "/home/esp/chicken_coop_rs"
+        "tamasfe.even-better-toml"
+      ]
+    },
+    "forwardPorts": [
+      8000,
+      3333
+    ],
+    // "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/chicken-coop-rs,type=bind,consistency=cached",
+    "workspaceFolder": "/workspaces/chicken-coop-rs"
+  }
 }

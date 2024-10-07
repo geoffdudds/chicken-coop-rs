@@ -1,26 +1,51 @@
+#![no_std]
+#![no_main]
+#![feature(type_alias_impl_trait)]
+
+use embassy_executor::Spawner;
+use embassy_time::{Duration, Timer};
+use esp_backtrace as _;
+use esp_hal::{clock::ClockControl, peripherals::Peripherals, prelude::*, system::SystemControl};
+use sunrise::{sunrise_sunset, DawnType, SolarDay, SolarEvent};
+
 mod chicken;
 use crate::chicken::Chicken;
 
-fn main() {
-    // It is necessary to call this function once. Otherwise some patches to the runtime
-    // implemented by esp-idf-sys might not link properly. See https://github.com/esp-rs/esp-idf-template/issues/71
-    esp_idf_svc::sys::link_patches();
+#[embassy_executor::task]
+async fn one_second_task() {
+    let mut count = 0;
 
-    // Bind the log crate to the ESP Logging facilities
-    esp_idf_svc::log::EspLogger::initialize_default();
-
-    log::info!("Hello, world!");
-
-    // create a chicken object (updates at midnight)
-    // future - add app overrides
-    // create a gate controller (init based on schedule, eg isAwake(offset))
-    // create gate driver
-
-    let chicken = Chicken::new();
-    if chicken.is_awake() {
-        log::info!("the chickens are awake!");
+    loop {
+        esp_println::println!("Spawn Task Count: {}", count);
+        count += 1;
+        Timer::after(Duration::from_millis(1_000)).await;
     }
-    log::info!("wake time: {}", Chicken::get_wake_time().unwrap());
-    log::info!("bed time: {}", Chicken::get_bed_time().unwrap());
-    log::info!("now: {}", Chicken::get_time());
+}
+
+#[main]
+async fn main(spawner: Spawner) {
+    let peripherals = Peripherals::take();
+    let system = SystemControl::new(peripherals.SYSTEM);
+    let clocks = ClockControl::boot_defaults(system.clock_control).freeze();
+
+    esp_hal_embassy::init(
+        &clocks,
+        esp_hal::timer::timg::TimerGroup::new(peripherals.TIMG0, &clocks).timer0,
+    );
+
+    spawner.spawn(one_second_task()).unwrap();
+
+    let mut count = 0;
+    loop {
+        esp_println::println!("Main Task Count: {}", count);
+        count += 1;
+        Timer::after(Duration::from_millis(5_000)).await;
+    }
+}
+
+#[embassy_executor::task]
+async fn print_circadia_stats() {
+    let dawn = SolarDay::new(43.6532, -79.3832, 2016, 1, 1)
+        .with_altitude(54.)
+        .event_time(SolarEvent::Dawn(DawnType::Civil));
 }

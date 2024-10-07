@@ -18,4 +18,4 @@ case "$1" in
     ;;
 esac
 
-web-flash --chip esp32 target/xtensa-esp32-espidf/${BUILD_MODE}/chicken-coop-rs
+web-flash --chip esp32 target/xtensa-esp32-none-elf/${BUILD_MODE}/chicken_gate

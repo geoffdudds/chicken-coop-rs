@@ -4,7 +4,8 @@
     {
       "label": "Build",
       "type": "shell",
-      "command": "scripts/build.sh ${input:buildMode}",
+      "command": "scripts/build.sh release",
+      // "command": "scripts/build.sh ${input:buildMode}",
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -16,7 +17,8 @@
     {
       "label": "Build & Flash",
       "type": "shell",
-      "command": "scripts/flash.sh ${input:buildMode}",
+      "command": "scripts/flash.sh release",
+      // "command": "scripts/flash.sh ${input:buildMode}",
       "options": {
         "cwd": "${workspaceFolder}"
       },
