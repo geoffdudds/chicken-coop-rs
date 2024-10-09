@@ -22,11 +22,11 @@
         "rust-lang.rust-analyzer",
         "mhutchie.git-graph",
         "albert.TabOut",
-        "serayuzgur.crates",
         "yzhang.markdown-all-in-one",
         "ms-vscode.cpptools",
         "actboy168.tasks",
-        "tamasfe.even-better-toml"
+        "tamasfe.even-better-toml",
+        "fill-labs.dependi"
       ]
     },
     "forwardPorts": [

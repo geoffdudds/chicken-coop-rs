@@ -2,12 +2,13 @@
 // use chrono::LocalResult;
 // use esp_idf_svc::sys::__time_t;
 // use std::time::SystemTime;
-use sunrise::{DawnType, SolarDay, SolarEvent};
+// use sunrise::{DawnType, SolarDay, SolarEvent};
 
 pub struct Chicken {
     // wake_time: Option<u32>,
     // bed_time: Option<u32>,
-    awake: bool,
+    // awake: bool,
+    // awake: bool,
 }
 
 // todo: need a timer that is a future to wait on, then have an async process
@@ -18,16 +19,16 @@ impl Chicken {
         Self {
             // wake_time: Option::None,
             // bed_time: Option::None,
-            awake: false,
+            // awake: false,
         }
     }
 
-    async fn wake_and_sleep() {
-        // day.dawn.await;
-        // awake = true;
-        // day.dusk.await;
-        // awake = false;
-    }
+    // async fn wake_and_sleep() {
+    // day.dawn.await;
+    // awake = true;
+    // day.dusk.await;
+    // awake = false;
+    // }
 }
 
 // impl Chicken {
